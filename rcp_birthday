@@ -1,0 +1,17 @@
+@Override
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+		mSearchCityAdapter = new SearchCityAdapter(SelectCtiyActivity.this,
+				mCities);
+		mSearchListView.setAdapter(mSearchCityAdapter);
+		mSearchListView.setTextFilterEnabled(true);
+		if (mCities.size() < 1 || TextUtils.isEmpty(s)) {
+			mCityContainer.setVisibility(View.VISIBLE);
+			mSearchContainer.setVisibility(View.INVISIBLE);
+			mClearSearchBtn.setVisibility(View.GONE);
+		} else {
+			mClearSearchBtn.setVisibility(View.VISIBLE);
+			mCityContainer.setVisibility(View.INVISIBLE);
+			mSearchContainer.setVisibility(View.VISIBLE);
+			mSearchCityAdapter.getFilter().filter(s);
+		}
+	}
